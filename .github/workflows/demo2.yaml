@@ -1,0 +1,45 @@
+name: lacework-vuln-scan
+
+on:
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+    inputs:
+
+        LW_ACCESS_TOKEN:
+            type: string
+            description: 'lw_access_token'
+            required: true
+            default: 'eefd65ffff'
+
+        LW_ACCOUNT_NAME:
+            type: string
+            description: 'lw_acc_name'
+            required: true
+            default: 'some-account'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lacework/lw-scanner-action@v1.2.0
+        name: Scan container images for vulnerabitilies using Lacework
+        with:
+          LW_ACCOUNT_NAME: ${{ inputs.LW_ACCOUNT_NAME }}
+          LW_ACCESS_TOKEN: ${{ inputs.LW_ACCESS_TOKEN }}
+          IMAGE_NAME: techallylw/vulnerable-container
+          IMAGE_TAG: v0.0.1
+          SAVE_RESULTS_IN_LACEWORK: true
+          SAVE_BUILD_REPORT: true
+          BUILD_REPORT_FILE_NAME: myreport.html
+        env:
+          JAVA_OFFLINE_MODE: true
+
+      - name: Upload Vulnerability reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: vul_scanner_report
+          path: output/lacework-vulnerability-report.html
+          if-no-files-found: error
