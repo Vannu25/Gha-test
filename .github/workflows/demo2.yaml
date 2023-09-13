@@ -34,13 +34,14 @@ jobs:
         with:
           LW_ACCOUNT_NAME: ${{ inputs.LW_ACCOUNT_NAME }}
           LW_ACCESS_TOKEN: ${{ inputs.LW_ACCESS_TOKEN }}
-          IMAGE_NAME: techallylw/vulnerable-container
-          IMAGE_TAG: v0.0.1
+          LW_SCANNER_DISABLE_UPDATES: true
+          IMAGE_NAME: node
+          IMAGE_TAG: 12.18.2-alpine
           SAVE_RESULTS_IN_LACEWORK: true
           SAVE_BUILD_REPORT: true
-          BUILD_REPORT_FILE_NAME: myreport.html
-        env:
-          JAVA_OFFLINE_MODE: true
+          BUILD_REPORT_FILE_NAME: test_report.html
+          PRETTY_OUTPUT: true
+        
        
       - name: Upload Vulnerability reports
         uses: actions/upload-artifact@v3
