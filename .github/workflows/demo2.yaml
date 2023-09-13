@@ -26,7 +26,7 @@ jobs:
     steps:     
       - name: lw scanner config
         run:
-          lw-scanner configure scanner
+          ./lw-scanner configure auth
           
       - uses: lacework/lw-scanner-action@v1.3.0
         name: Scan container images for vulnerabilities using Lacework
@@ -36,6 +36,7 @@ jobs:
           IMAGE_NAME: node
           IMAGE_TAG: 12.18.2-alpine
           SAVE_RESULTS_IN_LACEWORK: false
+          LW_SCANNER_SAVE_RESULTS: true
           SAVE_BUILD_REPORT: true
           BUILD_REPORT_FILE_NAME: test_report.html
           PRETTY_OUTPUT: true
