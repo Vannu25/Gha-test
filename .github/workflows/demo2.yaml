@@ -28,7 +28,7 @@ jobs:
         run:
           lw-scanner configure scanner
           
-      - uses: lacework/lw-scanner-action@v1.2.0
+      - uses: lacework/lw-scanner-action@v1.3.0
         name: Scan container images for vulnerabilities using Lacework
         with:
           LW_ACCOUNT_NAME: ${{ inputs.LW_ACCOUNT_NAME }}
