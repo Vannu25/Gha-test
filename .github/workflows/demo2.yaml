@@ -24,6 +24,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
+      - name: lw scanner config
+        run:
+          lw-scanner configure auth
+          
       - uses: lacework/lw-scanner-action@v1.2.0
         name: Scan container images for vulnerabitilies using Lacework
         with:
@@ -36,7 +41,7 @@ jobs:
           BUILD_REPORT_FILE_NAME: myreport.html
         env:
           JAVA_OFFLINE_MODE: true
-
+       
       - name: Upload Vulnerability reports
         uses: actions/upload-artifact@v3
         with:
