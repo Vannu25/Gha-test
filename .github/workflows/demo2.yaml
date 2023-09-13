@@ -12,7 +12,7 @@ on:
             type: string
             description: 'lw_access_token'
             required: true
-            default: 'eefd65ffff'
+            default: 'XYZ'
 
         LW_ACCOUNT_NAME:
             type: string
