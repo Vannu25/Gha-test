@@ -33,14 +33,14 @@ jobs:
         with:
           LW_ACCOUNT_NAME: ${{ inputs.LW_ACCOUNT_NAME }}
           LW_ACCESS_TOKEN: ${{ inputs.LW_ACCESS_TOKEN }}
-          LW_SCANNER_DISABLE_UPDATES: true
           IMAGE_NAME: node
           IMAGE_TAG: 12.18.2-alpine
-          SAVE_RESULTS_IN_LACEWORK: true
+          SAVE_RESULTS_IN_LACEWORK: false
           SAVE_BUILD_REPORT: true
           BUILD_REPORT_FILE_NAME: test_report.html
           PRETTY_OUTPUT: true
-          SCAN_LIBRARY_PACKAGES: true
+          LW_SCANNER_DISABLE_UPDATES: false
+          LW_SCANNER_DISABLE_LIBRARY_PACKAGES_SCANNING: false
         
       - name: Upload Vulnerability reports
         uses: actions/upload-artifact@v3
