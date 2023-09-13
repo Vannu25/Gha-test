@@ -39,9 +39,8 @@ jobs:
 
       - name: lw scanner config
         run:
-          lw-scanner configure auth
+          lw-scanner configure scanner
         
-       
       - name: Upload Vulnerability reports
         uses: actions/upload-artifact@v3
         with:
